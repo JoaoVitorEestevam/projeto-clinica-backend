@@ -1,4 +1,5 @@
 package com.github.joaovitoreestevam.clinica.models.paciente;
+import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

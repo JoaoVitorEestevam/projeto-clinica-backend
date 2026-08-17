@@ -1,5 +1,6 @@
 package com.github.joaovitoreestevam.clinica.models.medico;
 
+import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,4 +33,8 @@ public class Medico {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Especialidades especialidade;
+
+    @NotNull
+    @Embedded
+    private Endereco endereco;
 }
