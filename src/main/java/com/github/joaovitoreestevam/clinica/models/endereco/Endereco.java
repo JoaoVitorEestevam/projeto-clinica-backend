@@ -1,5 +1,6 @@
 package com.github.joaovitoreestevam.clinica.models.endereco;
 
+import com.github.joaovitoreestevam.clinica.dto.endereco.EnderecoDTO;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,4 +34,14 @@ public class Endereco {
     private Uf uf;
 
     private String numero;
+
+
+    public Endereco(EnderecoDTO dto){
+     this.cep = dto.cep();
+     this.logradouro = dto.logradouro();
+     this.bairro = dto.bairro();
+     this.cidade = dto.cidade();
+     this.uf = dto.uf();
+     this.numero = dto.numero();
+    }
 }

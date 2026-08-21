@@ -1,4 +1,5 @@
 package com.github.joaovitoreestevam.clinica.models.paciente;
+import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteCadastroDTO;
 import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -31,4 +32,12 @@ public class Paciente {
     @Embedded
     @NotNull
     private Endereco endereco;
+
+    public Paciente(PacienteCadastroDTO dto){
+        this.nome = dto.nome();
+        this.email = dto.email();
+        this.telefone= dto.telefone();
+        this.cpf = dto.cpf();
+        this.endereco = new Endereco(dto.endereco());
+    }
 }
