@@ -5,7 +5,13 @@ CREATE TABLE medicos
     email         VARCHAR(100),
     telefone      VARCHAR(20),
     crm           VARCHAR(20)  NOT NULL UNIQUE ,
-    especialidade VARCHAR(50)  NOT NULL
+    especialidade VARCHAR(50)  NOT NULL,
+    cep        VARCHAR(9)   NOT NULL,
+    logradouro VARCHAR(100) NOT NULL,
+    bairro     VARCHAR(50)  NOT NULL,
+    cidade     VARCHAR(50)  NOT NULL,
+    uf         VARCHAR(2)   NOT NULL,
+    numero     VARCHAR(20)
 );
 
 CREATE TABLE pacientes
