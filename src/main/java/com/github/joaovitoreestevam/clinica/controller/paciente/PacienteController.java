@@ -1,9 +1,11 @@
 package com.github.joaovitoreestevam.clinica.controller.paciente;
 
+import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteAtualizacaoDTO;
 import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteCadastroDTO;
 import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteListagemDTO;
 import com.github.joaovitoreestevam.clinica.models.paciente.Paciente;
 import com.github.joaovitoreestevam.clinica.repositories.PacienteRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,5 +29,13 @@ public class PacienteController {
         Paciente paciente = new Paciente(dto);
 
         repository.save(paciente);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid PacienteAtualizacaoDTO dto){
+        Paciente paciente = repository.getReferenceById(dto.id());
+
+        paciente.atualizarInformacoes(dto);
     }
 }

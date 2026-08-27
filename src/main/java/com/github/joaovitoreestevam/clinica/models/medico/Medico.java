@@ -1,5 +1,6 @@
 package com.github.joaovitoreestevam.clinica.models.medico;
 
+import com.github.joaovitoreestevam.clinica.dto.medico.MedicoAtualizacaoDTO;
 import com.github.joaovitoreestevam.clinica.dto.medico.MedicoCadastroDTO;
 import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import jakarta.persistence.*;
@@ -47,5 +48,23 @@ public class Medico {
         this.crm = dto.crm();
         this.especialidade = dto.especialidade();
         this.endereco = new Endereco(dto.endereco());
+    }
+
+    public void atualizarInformacoes(MedicoAtualizacaoDTO dto){
+        if(dto.nome() != null){
+            this.nome = dto.nome();
+        }
+
+        if(dto.email() != null){
+            this.email = dto.email();
+        }
+
+        if (dto.telefone() != null){
+            this.telefone = dto.telefone();
+        }
+
+        if (dto.endereco() != null){
+            this.endereco.atualizarInformacoes(dto.endereco());
+        }
     }
 }
