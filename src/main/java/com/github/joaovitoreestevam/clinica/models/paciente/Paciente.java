@@ -34,6 +34,13 @@ public class Paciente {
     @NotNull
     private Endereco endereco;
 
+    @NotNull
+    private Boolean ativo;
+
+    public void excluir(){
+        this.ativo = false;
+    }
+
     public Paciente(PacienteCadastroDTO dto){
         this.nome = dto.nome();
         this.email = dto.email();

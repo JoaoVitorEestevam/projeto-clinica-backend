@@ -40,4 +40,12 @@ public class MedicoController {
         medico.atualizarInformacoes(dto);
 
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void exlcuir(@PathVariable Long id){
+        Medico medico = repository.getReferenceById(id);
+
+        medico.excluir();
+    }
 }

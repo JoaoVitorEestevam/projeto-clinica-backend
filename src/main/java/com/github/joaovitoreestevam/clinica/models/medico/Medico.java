@@ -40,6 +40,13 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    @NotNull
+    private Boolean ativo;
+
+    public void excluir(){
+        this.ativo = false;
+    }
+
 
     public Medico(MedicoCadastroDTO dto){
         this.nome = dto.nome();
