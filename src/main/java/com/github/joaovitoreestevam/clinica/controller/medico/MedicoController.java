@@ -1,9 +1,12 @@
 package com.github.joaovitoreestevam.clinica.controller.medico;
 
 
+import com.github.joaovitoreestevam.clinica.client.ViaCepClient;
+import com.github.joaovitoreestevam.clinica.dto.endereco.ViaCepDTO;
 import com.github.joaovitoreestevam.clinica.dto.medico.MedicoAtualizacaoDTO;
 import com.github.joaovitoreestevam.clinica.dto.medico.MedicoCadastroDTO;
 import com.github.joaovitoreestevam.clinica.dto.medico.MedicoListagemDTO;
+import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import com.github.joaovitoreestevam.clinica.models.medico.Medico;
 import com.github.joaovitoreestevam.clinica.repositories.MedicoRepository;
 import jakarta.transaction.Transactional;
@@ -20,6 +23,8 @@ public class MedicoController {
     @Autowired
     private MedicoRepository repository;
 
+    @Autowired
+    private ViaCepClient viaCepClient;
     @GetMapping
     public Page<MedicoListagemDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
       return repository.findAll(paginacao).map(MedicoListagemDTO::new);
@@ -27,7 +32,12 @@ public class MedicoController {
 
     @PostMapping
     public void cadastrar(@RequestBody @Valid MedicoCadastroDTO dto){
+
+       ViaCepDTO dadosViaCep = viaCepClient.buscarEnderecoPorCep(dto.endereco().cep());
+
        Medico medico = new Medico(dto);
+
+       medico.setEndereco(new Endereco(dto.endereco(), dadosViaCep));
 
         repository.save(medico);
     }

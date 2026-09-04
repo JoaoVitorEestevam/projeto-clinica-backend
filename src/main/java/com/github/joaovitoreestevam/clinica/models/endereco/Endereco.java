@@ -2,6 +2,7 @@ package com.github.joaovitoreestevam.clinica.models.endereco;
 
 import com.github.joaovitoreestevam.clinica.dto.endereco.EnderecoAtualizacaoDTO;
 import com.github.joaovitoreestevam.clinica.dto.endereco.EnderecoDTO;
+import com.github.joaovitoreestevam.clinica.dto.endereco.ViaCepDTO;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -44,6 +45,16 @@ public class Endereco {
      this.cidade = dto.cidade();
      this.uf = dto.uf();
      this.numero = dto.numero();
+    }
+
+    public Endereco(EnderecoDTO enderecoDTO, ViaCepDTO viaCepDTO){
+        this.cep = enderecoDTO.cep();
+        this.numero = enderecoDTO.numero();
+
+        this.logradouro = viaCepDTO.logradouro();
+        this.bairro = viaCepDTO.bairro();
+        this.cidade = viaCepDTO.localidade();
+        this.uf = Uf.valueOf(viaCepDTO.uf());
     }
 
     public void atualizarInformacoes(EnderecoAtualizacaoDTO dto){

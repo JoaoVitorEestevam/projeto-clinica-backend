@@ -41,7 +41,7 @@ public class Medico {
     private Endereco endereco;
 
     @NotNull
-    private Boolean ativo;
+    private Boolean ativo = true;
 
     public void excluir(){
         this.ativo = false;
