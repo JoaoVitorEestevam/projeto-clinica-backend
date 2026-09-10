@@ -8,7 +8,7 @@ import com.github.joaovitoreestevam.clinica.dto.medico.MedicoCadastroDTO;
 import com.github.joaovitoreestevam.clinica.dto.medico.MedicoListagemDTO;
 import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import com.github.joaovitoreestevam.clinica.models.medico.Medico;
-import com.github.joaovitoreestevam.clinica.repositories.MedicoRepository;
+import com.github.joaovitoreestevam.clinica.repositories.medico.MedicoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;

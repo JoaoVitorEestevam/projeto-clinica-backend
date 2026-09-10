@@ -1,5 +1,6 @@
 package com.github.joaovitoreestevam.clinica.models.consulta;
 
+import com.github.joaovitoreestevam.clinica.dto.consulta.ConsultaCadastroDTO;
 import com.github.joaovitoreestevam.clinica.models.medico.Medico;
 import com.github.joaovitoreestevam.clinica.models.paciente.Paciente;
 import jakarta.persistence.*;
@@ -36,7 +37,7 @@ public class Consulta {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.AGENDADA;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "motivo_cancelamento")
@@ -51,6 +52,4 @@ public class Consulta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
-
 }

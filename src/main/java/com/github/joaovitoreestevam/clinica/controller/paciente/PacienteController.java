@@ -7,7 +7,7 @@ import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteCadastroDTO;
 import com.github.joaovitoreestevam.clinica.dto.paciente.PacienteListagemDTO;
 import com.github.joaovitoreestevam.clinica.models.endereco.Endereco;
 import com.github.joaovitoreestevam.clinica.models.paciente.Paciente;
-import com.github.joaovitoreestevam.clinica.repositories.PacienteRepository;
+import com.github.joaovitoreestevam.clinica.repositories.paciente.PacienteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

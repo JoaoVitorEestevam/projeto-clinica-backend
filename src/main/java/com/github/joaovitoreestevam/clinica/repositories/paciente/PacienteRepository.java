@@ -1,4 +1,4 @@
-package com.github.joaovitoreestevam.clinica.repositories;
+package com.github.joaovitoreestevam.clinica.repositories.paciente;
 
 import com.github.joaovitoreestevam.clinica.models.paciente.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
