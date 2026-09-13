@@ -1,6 +1,7 @@
 package com.github.joaovitoreestevam.clinica.controller.consulta;
 
 import com.github.joaovitoreestevam.clinica.dto.consulta.ConsultaCadastroDTO;
+import com.github.joaovitoreestevam.clinica.dto.consulta.ConsultaCancelamentoDTO;
 import com.github.joaovitoreestevam.clinica.models.consulta.Consulta;
 import com.github.joaovitoreestevam.clinica.models.consulta.validacoes.ValidadorAgendamentoConsulta;
 import com.github.joaovitoreestevam.clinica.models.medico.Medico;
@@ -12,10 +13,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,6 +65,19 @@ public class ConsultaController {
         consulta.setDataHora(dto.data());
 
         consultaRepository.save(consulta);
+
+    }
+
+    @DeleteMapping
+    @Transactional
+    public void cancelar(@RequestBody @Valid ConsultaCancelamentoDTO dto){
+        if(!consultaRepository.existsById(dto.id())){
+           throw new RuntimeException("O Id da consulta informado NÃO existe....");
+        }
+
+        Consulta consulta = consultaRepository.getReferenceById(dto.id());
+
+        consulta.cancelar(dto.motivo());
 
     }
 }

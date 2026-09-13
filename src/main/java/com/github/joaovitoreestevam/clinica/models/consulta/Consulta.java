@@ -14,9 +14,7 @@ import java.time.LocalDateTime;
     AGENDADA, CANCELADA
 }
 
-enum MotivoCancelamento{
-     PACIENTE_CANCELOU, MEDICO_CANCELOU, OUTROS
-}
+
 
 
 @Entity(name = "Consulta")
@@ -27,6 +25,7 @@ enum MotivoCancelamento{
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Consulta {
+
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -52,4 +51,13 @@ public class Consulta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+
+
+
+    public void cancelar(MotivoCancelamento motivo){
+        this.status = Status.CANCELADA;
+
+        this.motivoCancelamento = motivo;
+
+    }
 }
