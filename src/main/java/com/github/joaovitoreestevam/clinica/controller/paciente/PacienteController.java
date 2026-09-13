@@ -24,12 +24,14 @@ public class PacienteController {
 
     @Autowired
     private ViaCepClient viaCepClient;
+
     @GetMapping
     public Page<PacienteListagemDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
         return repository.findAll(paginacao).map(PacienteListagemDTO::new);
     }
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody @Valid PacienteCadastroDTO dto){
         ViaCepDTO dadosViaCep = viaCepClient.buscarEnderecoPorCep(dto.endereco().cep());
 

@@ -25,11 +25,12 @@ public class MedicoController {
 
     @Autowired
     private ViaCepClient viaCepClient;
+
     @GetMapping
     public Page<MedicoListagemDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
       return repository.findAll(paginacao).map(MedicoListagemDTO::new);
     }
-
+    @Transactional
     @PostMapping
     public void cadastrar(@RequestBody @Valid MedicoCadastroDTO dto){
 
